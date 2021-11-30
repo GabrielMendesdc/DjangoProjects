@@ -1,0 +1,15 @@
+{% extends "dozeros/base.html" %}
+
+{% block content %}
+
+  <p><a href="{% url 'dozeros:topic' topic.id %}">{{ topic}}</a>
+  </p>
+
+  <p>Edita entrada:</p>
+  <form action="{% url 'dozeros:edit_entry' entry.id %}" method='post'>
+    {% csrf_token %}
+	{{ form.as_p }}
+	<button name="submit">salvar alterações</button>
+  </form>
+
+{% endblock content %}

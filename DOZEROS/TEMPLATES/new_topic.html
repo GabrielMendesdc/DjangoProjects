@@ -1,0 +1,13 @@
+{% extends "dozeros/base.html" %}
+
+{% block content %}
+
+  <p> Adiciona novo Tópico:</p>
+
+  <form action="{% url 'dozeros:new_topic' %}" method='post'>
+    {% csrf_token %}
+	{{ form.as_p }}
+	<button name="submit">adicionar tópico</button>
+  </form>
+
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends "dozeros/base.html" %}
+
+{% block content %}
+
+<p> Tópicos</p>
+
+  <ul>
+    {% for topic in topics %}
+      <li>
+	    <a href="{% url 'dozeros:topic' topic.id %}">{{topic}}</a>
+	  </li>
+    {% empty %}
+      <li>Não tem tópicos aqui ainda.</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'dozeros:new_topic' %}">Adiciona um tópico novo</a>
+  
+
+{% endblock content %}

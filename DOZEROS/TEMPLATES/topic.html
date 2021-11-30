@@ -1,0 +1,27 @@
+{% extends "dozeros/base.html" %}
+
+{% block content %}
+
+  <p> Tópico: {{ topic }}</p>
+
+  <p> Entradas:</p>
+  <p>
+    <a href="{% url 'dozeros:new_entry' topic.id %}">adiciona
+	nova entrada</a>
+  </p>
+  <ul>
+    {% for entry in entries %}
+      <li>
+	    <p>{{ entry.date_added|date:'d / m / Y  ... H:i'}}</p>
+	    <p>{{ entry.text|linebreaks }}</p>
+		<p>
+		  <a href="{% url 'dozeros:edit_entry' entry.id %}">Editar
+		  entrada</a>
+		</p>		  
+	  </li>
+    {% empty %}
+      <li>Não tem entradas aqui ainda.</li>
+    {% endfor %}
+  </ul>
+
+{% endblock content %}

@@ -1,0 +1,14 @@
+
+
+<p>
+	<a href="{% url 'dozeros:index' %}">Dozeros Malucos</a>
+	<a href="{% url 'dozeros:topics' %}">Tópicos</a> -
+	{% if user.is_authenticated %}
+	  hello, {{ user.username }}.
+	{% else %}
+	  <a href="{% url 'users:login' %}">log in</a>
+	{% endif %}
+ </p>
+
+
+{% block content %}{% endblock content %}

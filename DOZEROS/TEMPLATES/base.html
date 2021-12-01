@@ -5,7 +5,9 @@
 	<a href="{% url 'dozeros:topics' %}">Tópicos</a> -
 	{% if user.is_authenticated %}
 	  hello, {{ user.username }}.
+	  <a href="{% url 'users:logout' %}">log out</a>
 	{% else %}
+	  <a href="{% url 'users:register' %}">registrar</a>
 	  <a href="{% url 'users:login' %}">log in</a>
 	{% endif %}
  </p>

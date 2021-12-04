@@ -1,27 +1,32 @@
 {% extends "dozeros/base.html" %}
 
+{% block header %}
+  <h2>{{ topic }}</h2>
+{% endblock header %}
+
 {% block content %}
 
-  <p> Tópico: {{ topic }}</p>
-
-  <p> Entradas:</p>
   <p>
     <a href="{% url 'dozeros:new_entry' topic.id %}">adiciona
 	nova entrada</a>
   </p>
-  <ul>
     {% for entry in entries %}
-      <li>
-	    <p>{{ entry.date_added|date:'d / m / Y  ... H:i'}}</p>
-	    <p>{{ entry.text|linebreaks }}</p>
-		<p>
-		  <a href="{% url 'dozeros:edit_entry' entry.id %}">Editar
-		  entrada</a>
-		</p>		  
-	  </li>
+      <div class="panel panel-default">
+	    <div class="panel-heading">
+	      <h3>
+		    {{ entry.date_added|date:'d/m/Y H:i' }}
+		    <small>
+		      <a href="{% url 'dozeros:edit_entry' entry.id %}">
+			    editar entrada</a>
+		    <small>
+		  </h3>
+		</div>
+		<div class="panel-body">
+		  {{ entry.text|linebreaks }}
+		</div>
+	  </div> <!-- panel -->
     {% empty %}
-      <li>Não tem entradas aqui ainda.</li>
+      Não tem entradas aqui ainda.
     {% endfor %}
-  </ul>
 
 {% endblock content %}

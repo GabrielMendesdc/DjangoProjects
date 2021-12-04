@@ -1,13 +1,18 @@
 {% extends "dozeros/base.html" %}
 
-{% block content %}
+{% block header %}
+  <h1>Topicos</h1>
+{% endblock header %}
 
-<p> Tópicos</p>
+
+{% block content %}
 
   <ul>
     {% for topic in topics %}
       <li>
-	    <a href="{% url 'dozeros:topic' topic.id %}">{{topic}}</a>
+	    <h3>
+	      <a href="{% url 'dozeros:topic' topic.id %}">{{topic}}</a>
+		</h3>
 	  </li>
     {% empty %}
       <li>Não tem tópicos aqui ainda.</li>

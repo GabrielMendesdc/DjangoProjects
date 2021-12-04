@@ -1,8 +1,23 @@
 {% extends "dozeros/base.html" %}
+{% block header %}
+  <div class='jumbotron'>
+    <h1>Registre seus aprendizados.</h1>
+  </div>
+{% endblock header %}
+
 
 {% block content %}
-
-<p> esse projeto de site te ajuda a decorar coisas que vc aprendeu
-feito por Gabriel Mendes de Campos. github.com/gabrielmendesdc </p>
+  <h2>
+    <a href="{% url 'users:register' %}">Registre sua conta</a> para
+fazer seu próprio registro, listando os tópicos aprendidos.
+  </h2>
+  <h2>
+  Esse projeto de site te ajuda a decorar coisas que vc aprendeu
+feito por Gabriel Mendes de Campos. github.com/gabrielmendesdc
+  </h2>
+  <h2>
+    Quando vc aprender sobre algo novo faça uma entrada
+	resumindo o assunto aprendido.
+  </h2>
 
 {% endblock content %}

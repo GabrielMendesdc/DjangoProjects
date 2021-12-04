@@ -1,15 +1,20 @@
 {% extends "dozeros/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+  <h2>Adiciona uma entrada nova</h2>
+{% endblock header %}
 
 {% block content %}
 
-  <p><a href="{% url 'dozeros:topic' topic.id %}">{{ topic}}</a>
-  </p>
-
-  <p>Adiciona uma entrada nova:</p>
-  <form action="{% url 'dozeros:new_entry' topic.id %}" method='post'>
+  <form action="{% url 'dozeros:new_entry' topic.id %}" method='post'
+      class="form">
     {% csrf_token %}
-	{{ form.as_p }}
-	<button name="submit">adicionar entrada</button>
+	{% bootstrap_form form %}
+	
+	{% buttons %}
+	  <button name="submit" class="btn btn-primary">adicionar entrada</button>
+	{% endbuttons %}
   </form>
 
 {% endblock content %}

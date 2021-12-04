@@ -23,8 +23,7 @@ def topic(request, topic_id):
     '''um assunto, varias entradas'''
     topic = Topic.objects.get(id=topic_id)
     #garante que o assunto seja só seu
-    if topic.owner != request.user:
-        raise Http404
+    check_topic_owner(topic,request)
         
     entries = topic.entry_set.order_by('-date_added')
     context = {'topic':topic, 'entries':entries}
@@ -54,7 +53,7 @@ def new_topic(request):
 def new_entry(request, topic_id):
     '''adiciona uma nova entrada do assunto'''
     topic = Topic.objects.get(id=topic_id)
-    
+    check_topic_owner(topic,request)
     if request.method != 'POST':
         #nenhum dado, cria form em branco
         form = EntryForm()
@@ -78,8 +77,7 @@ def edit_entry(request, entry_id):
     '''edita uma entrada existente'''
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
-    if topic.owner != request.user:
-        raise Http404
+    check_topic_owner(topic,request)
         
     if request.method != 'POST':
         #requisição inicial preenche com a entrada atual
@@ -94,3 +92,8 @@ def edit_entry(request, entry_id):
                                     args=[topic.id]))
     context = {'entry':entry, 'topic':topic, 'form': form}
     return render(request, 'dozeros/edit_entry.html', context)
+    
+    
+def check_topic_owner(topic,request):
+    if topic.owner != request.user:
+        raise Http404
